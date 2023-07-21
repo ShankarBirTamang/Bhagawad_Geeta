@@ -42,7 +42,7 @@ class _PostClassState extends State<PostClass> {
       if (value == true) {
         Timer(
             const Duration(seconds: 3),
-            () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage(),) ,));
+            () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage(),) ,));
             // ("/chapter"));
       }
     });

@@ -34,7 +34,7 @@ class _VersePageState extends State<VersePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("CHAPTER $chNumber"),
+        title: Text("CHAPTER $chNumber",style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w500),),
         elevation: 9,
         centerTitle: true,
         shadowColor: Colors.blueGrey,
