@@ -3,6 +3,7 @@ import 'package:geeta_sutra/response/chapter_list.dart';
 import 'package:http/http.dart' as http;
 import 'splash_screen.dart';
 int? chNumber ;
+
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
@@ -44,14 +45,14 @@ class _HomePageState extends State<HomePage> {
                   elevation: 10,
                   shadowColor: Colors.limeAccent.shade200,
                   color: const Color.fromARGB(255, 172, 222, 178),
-                  child: ListTile(
-                    title: Text(chData.nameMeaning.split("\"")[1],style:const TextStyle(decoration: TextDecoration.underline),),
-                    subtitle: Text(
-                      chData.chapterSummary.replaceFirst("\"", ""),
-                      maxLines: 3,
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                    leading: Text((index + 1).toString(),style: const TextStyle(fontSize: 24),),
+                  child: ExpansionTile(
+                    title: Text(chData.nameMeaning.split("\"")[1],style:const TextStyle(decoration: TextDecoration.none),),
+                    // subtitle: Text(
+                    //   chData.chapterSummary.replaceFirst("\"", ""),
+                    //   maxLines: 3,
+                    //   overflow: TextOverflow.ellipsis,
+                    // ),
+                    leading: Text((index + 1).toString(),style: const TextStyle(fontSize: 18),),
                     trailing: IconButton(
                       icon: const Icon(Icons.arrow_right_sharp),
                       onPressed: () {
@@ -61,6 +62,13 @@ class _HomePageState extends State<HomePage> {
                         Navigator.of(context).pushNamed("/verse");
                       },
                     ),
+                    textColor: const Color.fromARGB(255, 56, 90, 137),
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 16 , right: 16 , top: 8 , bottom: 8),
+                        child: Text( "Summary : ${chData.chapterSummary}"),
+                      )
+                    ],
                   ),
                 );
               },

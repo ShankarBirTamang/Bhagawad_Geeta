@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geeta_sutra/page/homepage.dart';
 import 'package:geeta_sutra/request/token.dart';
 import 'package:http/http.dart' as http;
 
@@ -41,7 +42,8 @@ class _PostClassState extends State<PostClass> {
       if (value == true) {
         Timer(
             const Duration(seconds: 3),
-            () => Navigator.of(context).pushNamed("/chapter"));
+            () => Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => const HomePage(),) ,));
+            // ("/chapter"));
       }
     });
   }

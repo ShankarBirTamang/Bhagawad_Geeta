@@ -4,7 +4,6 @@ import 'package:http/http.dart' as http;
 import 'homepage.dart';
 import 'splash_screen.dart';
 
-
 class VersePage extends StatefulWidget {
   const VersePage({super.key});
   @override
@@ -39,7 +38,7 @@ class _VersePageState extends State<VersePage> {
         elevation: 9,
         centerTitle: true,
         shadowColor: Colors.blueGrey,
-        backgroundColor: const Color.fromARGB(255, 172, 222, 178),
+        backgroundColor: const Color.fromARGB(255, 56, 90, 137),
       ),
       body: SafeArea(
           child: FutureBuilder<List<VerseList>?>(
@@ -52,9 +51,22 @@ class _VersePageState extends State<VersePage> {
                   return Card(
                     elevation: 8,
                     color: Colors.amberAccent.shade100,
-                    child: ListTile(
+                    child: ExpansionTile(
                       title: Text("Verse No. ${verses.verseNumber}"),
                       subtitle: Text(verses.meaning),
+                    textColor: const Color.fromARGB(255, 56, 90, 137),
+                      children: [
+                        Container(
+                          margin: const EdgeInsets.all(16),
+                          child: Column( mainAxisAlignment: MainAxisAlignment.center,
+                              children: [ 
+                                Text(verses.text,style: const TextStyle(fontSize: 18,color: Color.fromARGB(255, 18, 99, 9)), ),
+                                const SizedBox(height: 5,),
+                                Text(verses.wordMeanings.replaceAll(";", "\n").replaceAll("—", " = "))
+                              
+                              ]),
+                        )
+                      ],
                     ),
                   );
                 },
