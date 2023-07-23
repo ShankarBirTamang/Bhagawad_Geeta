@@ -1,10 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:geeta_sutra/page/homepage.dart';
 import 'package:geeta_sutra/request/token.dart';
 import 'package:http/http.dart' as http;
-
 
 String token = '';
 
@@ -40,10 +38,8 @@ class _PostClassState extends State<PostClass> {
     super.initState();
     postData().then((value) {
       if (value == true) {
-        Timer(
-            const Duration(seconds: 3),
-            () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => const HomePage(),) ,));
-            // ("/chapter"));
+        Timer(const Duration(seconds: 3),
+            () => Navigator.of(context).pushNamed("/chapter"));
       }
     });
   }
@@ -62,8 +58,7 @@ class _PostClassState extends State<PostClass> {
                 begin: Alignment.topRight,
                 end: Alignment.bottomLeft),
           ),
-          child: Image.asset('assets/images/kris.png',
-              height: 300, width: 250),
+          child: Image.asset('assets/images/kris.png', height: 300, width: 250),
         ),
       )),
     );
