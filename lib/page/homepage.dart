@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:geeta_sutra/response/chapter_list.dart';
 import 'package:http/http.dart' as http;
 import 'splash_screen.dart';
-int? chNumber ;
+
+int? chNumber;
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -27,60 +28,72 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-         title: const Text("BHAGAVAD GEETA",style: TextStyle(color: Colors.white,fontWeight: FontWeight.w500),),
-        elevation: 9,
-        centerTitle: true,
-        shadowColor: const Color.fromARGB(255, 34, 90, 119),
-        backgroundColor: const Color.fromARGB(255, 56, 90, 137),
-      ),
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: const Text(
+            "BHAGAVAD GEETA",
+            style: TextStyle(color: Colors.white, fontWeight: FontWeight.w500),
+          ),
+          elevation: 9,
+          centerTitle: true,
+          shadowColor: const Color.fromARGB(255, 34, 90, 119),
+          backgroundColor: const Color.fromARGB(255, 56, 90, 137),
+        ),
         body: FutureBuilder<List<ChapterList>?>(
-      future: getData(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return ListView.separated(
-              itemBuilder: (context, index) {
-                ChapterList chData = snapshot.data![index];
-                return Card(
-                  elevation: 10,
-                  shadowColor: Colors.limeAccent.shade200,
-                  color: const Color.fromARGB(255, 172, 222, 178),
-                  child: ExpansionTile(
-                    title: Text(chData.nameMeaning.split("\"")[1],style:const TextStyle(decoration: TextDecoration.none),),
-                    // subtitle: Text(
-                    //   chData.chapterSummary.replaceFirst("\"", ""),
-                    //   maxLines: 3,
-                    //   overflow: TextOverflow.ellipsis,
-                    // ),
-                    leading: Text((index + 1).toString(),style: const TextStyle(fontSize: 18),),
-                    trailing: IconButton(
-                      icon: const Icon(Icons.arrow_right_sharp),
-                      onPressed: () {
-                        setState(() {
-                          chNumber = index+1;
-                        });
-                        Navigator.of(context).pushNamed("/verse");
-                      },
-                    ),
-                    textColor: const Color.fromARGB(255, 56, 90, 137),
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(left: 16 , right: 16 , top: 8 , bottom: 8),
-                        child: Text( "Summary : ${chData.chapterSummary}"),
-                      )
-                    ],
-                  ),
-                );
-              },
-              separatorBuilder: (context, index) => const Divider(
-                    height: 4,
-                  ),
-              itemCount: snapshot.data!.length);
-        } else {
-          return const Center(child: CircularProgressIndicator());
-        }
-      },
-    ));
+          future: getData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              return ListView.separated(
+                  itemBuilder: (context, index) {
+                    ChapterList chData = snapshot.data![index];
+                    return Card(
+                      elevation: 10,
+                      shadowColor: Colors.limeAccent.shade200,
+                      color: const Color.fromARGB(255, 172, 222, 178),
+                      child: ExpansionTile(
+                        title: Text(
+                          chData.nameMeaning.split("\"")[1],
+                          style:
+                              const TextStyle(decoration: TextDecoration.none),
+                        ),
+                        // subtitle: Text(
+                        //   chData.chapterSummary.replaceFirst("\"", ""),
+                        //   maxLines: 3,
+                        //   overflow: TextOverflow.ellipsis,
+                        // ),
+                        leading: Text(
+                          (index + 1).toString(),
+                          style: const TextStyle(fontSize: 18),
+                        ),
+                        trailing: IconButton(
+                          icon: const Icon(Icons.arrow_right_sharp),
+                          onPressed: () {
+                            setState(() {
+                              chNumber = index + 1;
+                            });
+                            Navigator.of(context).pushNamed("/verse");
+                          },
+                        ),
+                        textColor: const Color.fromARGB(255, 56, 90, 137),
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16, right: 16, top: 8, bottom: 8),
+                            child: Text("Summary : ${chData.chapterSummary}"),
+                          )
+                        ],
+                      ),
+                    );
+                  },
+                  separatorBuilder: (context, index) => const Divider(
+                        height: 4,
+                      ),
+                  itemCount: snapshot.data!.length);
+            } else {
+              return const Center(child: CircularProgressIndicator());
+            }
+          },
+        ));
   }
 }
 
